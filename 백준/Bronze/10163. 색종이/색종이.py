@@ -1,3 +1,6 @@
+import sys
+input=sys.stdin.readline
+
 N=int(input())
 colored_paper=[0]*N
 for i in range(N):
