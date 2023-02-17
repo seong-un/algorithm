@@ -1,10 +1,9 @@
-def 거듭제곱(num, cnt):
-    if cnt == 1:
-        return num
-    return 거듭제곱(num, cnt - 1) * num
+def involution(N, M):
+  if M==1:
+    return N
+  return involution(N, M-1)*N
 
-
-for t in range(1, 11):
-    _ = input()
-    num, cnt = map(int, input().split())
-    print(f'#{t} {거듭제곱(num, cnt)}')
+for _ in range(10):
+  T=int(input())
+  N, M=map(int, input().split())
+  print(f'#{T} {involution(N, M)}')
