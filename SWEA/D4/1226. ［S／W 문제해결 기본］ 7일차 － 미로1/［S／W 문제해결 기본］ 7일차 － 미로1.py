@@ -1,38 +1,30 @@
-import copy
+from collections import deque
 
-for i in range(10):
+for _ in range(10):
     test_case=int(input())
-    maze=[]
+    maze=[0]*16
     for i in range(16):
-        maze.append(list(map(int, input())))
-    count=0
-    for i in range(16):
-        for j in range(16):
-            count+=1
-            if maze[i][j]==2:
-                a=i;b=j
-    vst=[[a,b]]
-    visiting=[]
-    while True:
-        for i in vst:
-            if maze[i[0]+1][i[1]] in [0,3]:
-                visiting.append([i[0]+1, i[1]])
-                maze[i[0]+1][i[1]]=2
-            if maze[i[0]-1][i[1]] in [0,3]:
-                visiting.append([i[0]-1, i[1]])
-                maze[i[0]-1][i[1]]=2
-            if maze[i[0]][i[1]+1] in [0,3]:
-                visiting.append([i[0], i[1]+1])
-                maze[i[0]][i[1]+1]=2
-            if maze[i[0]][i[1]-1] in [0,3]:
-                visiting.append([i[0], i[1]-1])
-                maze[i[0]][i[1]-1]=2
-        vst=copy.deepcopy(visiting)
-        visiting=[]
-        if not vst:
+        maze[i]=list(map(int, input()))
+        if 2 in maze[i]:
+            a, b=i, maze[i].index(2)
+    queue=deque()
+    queue.append([int(a),int(b)])
+    dx=[-1, 1, 0, 0]
+    dy=[0, 0, -1, 1]
+    result=0
+    while queue:
+        q=queue.popleft()
+        maze[q[0]][q[1]]=2
+        for i in range(4):
+            nx=q[0]+dx[i]
+            ny=q[1]+dy[i]
+            if nx<0 or ny<0 or nx>15 or ny>15 or maze[nx][ny]==1 or maze[nx][ny]==2:
+                continue
+            elif maze[nx][ny]==0:
+                queue.append([nx, ny])
+            elif maze[nx][ny]==3:
+                result=1
+                break
+        if result==1:
             break
-    printing=1
-    for i in range(16):
-        if 3 in maze[i]:
-            printing=0
-    print(f'#{test_case} {printing}')
+    print(f'#{test_case} {result}')
