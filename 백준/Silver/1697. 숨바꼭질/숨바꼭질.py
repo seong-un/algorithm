@@ -2,7 +2,7 @@ from collections import deque
 
 N, K=map(int, input().split())
 queue=deque([N])
-visited=[9999999]*100001
+visited=[0]*100001
 visited[N]=0
 for_break=False
 if K==N:
@@ -15,7 +15,7 @@ while queue:
             for_break=True
             print(visited[a]+1)
             break
-        if  0<=i<=100000 and visited[i]==9999999:
+        if  0<=i<=100000 and not visited[i]:
             queue.append(i)
             visited[i]=visited[a]+1
     if for_break:
