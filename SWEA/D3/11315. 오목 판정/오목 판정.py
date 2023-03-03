@@ -4,13 +4,13 @@ for test_case in range(1, T+1):
     concave=[0]*N
     for i in range(N):
         concave[i]=input()
-    dx=[-1, 1, 0, 0, -1, -1, 1, 1]
-    dy=[0, 0, -1, 1, -1, 1, -1, 1]
+    dx=[1, 0, -1, 1, 1]
+    dy=[0, 1, 1, -1, 1]
     omok=False
     for i in range(N):
         for j in range(N):
             if concave[i][j]=='o':
-                for k in range(8):
+                for k in range(5):
                     nx=i+dx[k]
                     ny=j+dy[k]
                     if nx<0 or ny<0 or nx>N-1 or ny>N-1 or concave[nx][ny]=='.':
