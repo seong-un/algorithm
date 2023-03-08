@@ -1,6 +1,3 @@
-import sys
-input=sys.stdin.readline
-
 def Bellman_Ford(start, N):
   global result
   least[start]=0
