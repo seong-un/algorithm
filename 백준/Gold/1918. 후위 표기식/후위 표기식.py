@@ -7,15 +7,9 @@ for idx, i in enumerate(notation):
   elif i=='(':
     stack.append(i)
   elif i in ['+', '-']:
-    if not stack:
-      stack.append(i)
-    else:
-      if stack[-1]=='(':
-        stack.append(i)
-      else:
-        while stack and stack[-1]!='(':
-          result+=stack.pop()
-        stack.append(i)
+    while stack and stack[-1]!='(':
+      result+=stack.pop()
+    stack.append(i)
   elif i in ['*', '/']:
     if not stack:
       stack.append(i)
