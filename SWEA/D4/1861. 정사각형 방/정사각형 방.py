@@ -1,36 +1,39 @@
 T = int(input())
 for test_case in range(1, T + 1):
-    N = int(input())
-    room = [[0] * N for i in range(N)]
-    for i in range(N):
-        room[i] = list(map(int, input().split()))
-    dx = [-1, 1, 0, 0]
-    dy = [0, 0, -1, 1]
-    cnt_list = []
-    visited = []
+    N=int(input())
+    A=[list(map(int, input().split())) for i in range(N)]
+    dx=[-1, 1, 0, 0]
+    dy=[0, 0, -1, 1]
+    visited=set()
+    room=[]
+    start=[]
     for i in range(N):
         for j in range(N):
-            if room[i][j] not in visited:
-                a, b = i, j
-                cnt = 0
-                while True:
-                    moved = 0
-                    cnt += 1
-                    for k in range(4):
-                        nx = a + dx[k]
-                        ny = b + dy[k]
-                        if nx < 0 or ny < 0 or nx > N - 1 or ny > N - 1:
-                            continue
-                        if room[nx][ny] == room[a][b] + 1:
-                            a, b = nx, ny
-                            visited.append(room[nx][ny])
-                            moved = 1
-                            break
-                    if moved == 0:
-                        cnt_list.append([room[i][j], cnt])
+            if (i, j) in visited:
+                continue
+            a, b=i, j
+            visited.add((a,b))
+            cnt=1
+            track=True
+            while track:
+                for k in range(4):
+                    nx=a+dx[k]
+                    ny=b+dy[k]
+                    if nx<0 or ny<0 or nx>N-1 or ny>N-1:
+                        if k == 3:
+                            track = False
+                        continue
+                    if A[a][b]==A[nx][ny]-1:
+                        a, b=nx, ny
+                        visited.add((a,b))
+                        cnt+=1
                         break
-    mx = []
-    for i in cnt_list:
-        if i[1] == max(cnt_list, key=lambda x: x[1])[1]:
-            mx.append(i)
-    print(f'#{test_case}', *min(mx, key=lambda x: x[0]))
+                    if k==3:
+                        track=False
+            room.append((A[i][j], cnt))
+    m=max(room, key=lambda x:x[1])[1]
+    room_number=N**2
+    for i in room:
+        if i[1]==m:
+            room_number=min(room_number, i[0])
+    print(f'#{test_case} {room_number} {m}')
