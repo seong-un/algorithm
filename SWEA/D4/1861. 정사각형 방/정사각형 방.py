@@ -4,9 +4,8 @@ for test_case in range(1, T + 1):
     A=[list(map(int, input().split())) for i in range(N)]
     dx=[-1, 1, 0, 0]
     dy=[0, 0, -1, 1]
-    visited=set()
-    room=[]
-    start=[]
+    visited=set() # 방문했던 방
+    room=[] # 어떤 방에서 얼만큼의 방을 이동했는지
     for i in range(N):
         for j in range(N):
             if (i, j) in visited:
