@@ -11,7 +11,4 @@ for test_case in range(1, T + 1):
     for i in range(3, 12):
         dp[i] = min(dp[i - 1] + plan[i] * day, dp[i - 1] + month, dp[i - 3] + mon3)
 
-    dp[10] = min(dp[10], dp[9] + mon3)
-    dp[11] = min(dp[11], dp[10] + mon3, dp[9] + mon3)
-
     print(f'#{test_case} {min(dp[-1], year)}')
