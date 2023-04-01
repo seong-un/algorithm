@@ -8,7 +8,6 @@ for test_case in range(1, T + 1):
     time=0
     while time<M:
         time+=1
-        comb=set()
         area_copy=[[[] for i in range(N)] for i in range(N)]
         for i in range(N):
             for j in range(N):
