@@ -11,19 +11,20 @@ for test_case in range(1, T+1):
     dy=[0, 0, -1, 1]
     heap=[]
     heapq.heappush(heap, [least[a][b], a, b])
+    dist=0
     while heap:
         for k in range(4):
             nx=a+dx[k]
             ny=b+dy[k]
             if nx<0 or ny<0 or nx>N-1 or ny>N-1:
                 continue
-            cost=least[a][b]+1
+            cost=dist+1
             if H[nx][ny]>H[a][b]:
                 cost+=H[nx][ny]-H[a][b]
             if cost<least[nx][ny]:
                 least[nx][ny]=cost
                 heapq.heappush(heap, [cost, nx, ny])
-        _, a, b=heapq.heappop(heap)
+        dist, a, b=heapq.heappop(heap)
         if a==N-1 and b==N-1:
             print(f'#{test_case} {least[a][b]}')
             break
