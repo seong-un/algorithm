@@ -16,6 +16,7 @@ for test_case in range(1, T+1):
         cost, a, b=heapq.heappop(heap)
         if a==N-1 and b==N-1:
             print(f'#{test_case} {cost}')
+            break
         for k in range(4):
             nx=a+dx[k]
             ny=b+dy[k]
