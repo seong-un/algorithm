@@ -11,7 +11,7 @@ for i in range(N-1):
 
 queue=deque([1])
 parent=[0]*(N+1)
-for _ in range(N):
+while queue:
     a=queue.popleft()
     for i in tree[a]:
         if not parent[i]:
