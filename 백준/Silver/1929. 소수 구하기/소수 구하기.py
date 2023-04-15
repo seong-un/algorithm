@@ -3,7 +3,7 @@ import math
 M, N=map(int, input().split())
 prime=[i for i in range(N+1)]
 prime[1]=0
-for i in range(N+1):
+for i in range(int(math.sqrt(N))+1):
     for j in range(i**2, N+1):
         if prime[i] == 0:
             break
