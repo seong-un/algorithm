@@ -1,3 +1,5 @@
+// 집합 사용하기
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -31,6 +33,8 @@ public class Main {
         set_A.removeAll(ANB);
         set_B.removeAll(ANB);
 
-        System.out.println(set_A.size()+set_B.size());
+        bw.write(set_A.size()+set_B.size()+"");
+        bw.flush();
+        bw.close();
     }
 }
