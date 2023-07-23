@@ -8,6 +8,7 @@ for t in range(T):
     queue = deque()
     queue.append([0, A])
     visited = [False] * 10000
+
     while queue:
         command, a = queue.popleft()
 
@@ -24,23 +25,13 @@ for t in range(T):
             print()
             break
 
-        if 2*a >= 10000:
-            if not visited[2*a % 10000]:
-                queue.append([command*10 + 1, 2*a % 10000])
-                visited[2*a % 10000] = True
-        else:
-            if not visited[2*a]:
-                queue.append([command*10 + 1, 2*a])
-                visited[2*a] = True
+        if not visited[2*a % 10000]:
+            queue.append([command*10 + 1, 2*a % 10000])
+            visited[2*a % 10000] = True
 
-        if a == 0:
-            if not visited[9999]:
-                queue.append([command*10 + 2, 9999])
-                visited[9999] = True
-        else:
-            if not visited[a-1]:
-                queue.append([command*10 + 2, a-1])
-                visited[a-1] = True
+        if not visited[(a-1) % 10000]:
+            queue.append([command*10 + 2, (a-1) % 10000])
+            visited[a-1] = True
 
         r = (a % 1000) * 10 + (a // 1000)
         if command == 0 or command % 10 != 4:
